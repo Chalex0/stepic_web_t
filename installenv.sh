@@ -15,4 +15,6 @@ cd ask
 python3 manage.py makemigrations qa
 python3 manage.py migrate
 
+sudo /etc/init.d/nginx restart
+
 gunicorn --bind=0.0.0.0:8000 --workers=2 --timeout=15 --log-level=debug ask.wsgi:application
