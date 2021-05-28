@@ -16,37 +16,20 @@ Including another URLconf
 #from django.contrib import admin
 #from django.urls import path
 
-#from django.conf.urls import include, url
-#from django.urls import path, re_path
-#from django.contrib import admin
-#from qa import views
-
-#urlpatterns = [                                             
-#    re_path(r'^.*$', views.test, name='index'),
-#    re_path(r'^login/.*$', views.test, name='login'),
-#    path('logout/', views.test, name='logout'),
-#    re_path(r'^signup/.*', views.test, name='signup'),
-#    re_path(r'^question/(?P<id>[0-9]+)/$', views.test, name='question'),
-#    path('answer/', views.test, name='answer'),
-#    re_path(r'^ask/.*', views.test, name='ask'),
-#    re_path(r'^popular/.*', views.test, name='popular'),
-#    re_path(r'^new/.*', views.test, name='new'),
-#    path('admin/', admin.site.urls),                                      
-#]
-
-# -*- coding: utf-8 -*-
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
+from django.urls import path, re_path
 from django.contrib import admin
+from qa import views
 
-from qa.views import test
-admin.autodiscover()
-
-urlpatterns = patterns('qa.views',                                              
-   url(r'^$', 'test'),                                                              
-   url(r'^login/.*$', 'test', name='login'),                                    
-   url(r'^signup/.*', 'test', name='signup'),                                   
-   url(r'^question/(?P<id>[0-9]+)/$', 'test', name='question'),                 
-   url(r'^ask/.*', 'test', name='ask'),                                         
-   url(r'^popular/.*', 'test', name='popular'),                                 
-   url(r'^new/.*', 'test', name='new'),                                         
-)    
+urlpatterns = [                                             
+    re_path(r'^.*$', views.test, name='index'),
+    re_path(r'^login/.*$', views.test, name='login'),
+    path('logout/', views.test, name='logout'),
+    re_path(r'^signup/.*', views.test, name='signup'),
+    re_path(r'^question/(?P<id>[0-9]+)/$', views.test, name='question'),
+    path('answer/', views.test, name='answer'),
+    re_path(r'^ask/.*', views.test, name='ask'),
+    re_path(r'^popular/.*', views.test, name='popular'),
+    re_path(r'^new/.*', views.test, name='new'),
+    path('admin/', admin.site.urls),                                      
+]
