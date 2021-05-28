@@ -17,19 +17,19 @@ Including another URLconf
 #from django.urls import path
 
 from django.conf.urls import include, url
-from django.urls import path
+from django.urls import path, re_path
 from django.contrib import admin
 from qa import views
 
 urlpatterns = [                                             
-    path('', views.test, name='index'),
-    path('login/', views.test, name='login'),
+    re_path(r'^$', views.test, name='index'),
+    re_path(r'^login/.*$', views.test, name='login'),
     path('logout/', views.test, name='logout'),
-    path('signup/', views.test, name='signup'),
-    path('question/<int:id>/', views.test, name='question'),
+    re_path(r'^signup/.*', views.test, name='signup'),
+    re_path(r'^question/(?P<id>[0-9]+)/$', views.test, name='question'),
     path('answer/', views.test, name='answer'),
-    path('ask/', views.test, name='ask'),
-    path('popular/', views.test, name='popular'),
-    path('new/', views.test, name='new'),
+    re_path(r'^ask/.*', views.test, name='ask'),
+    re_path(r'^popular/.*', views.test, name='popular'),
+    re_path(r'^new/.*', views.test, name='new'),
     path('admin/', admin.site.urls),                                      
 ]
