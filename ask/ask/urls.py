@@ -22,7 +22,7 @@ from django.contrib import admin
 from qa import views
 
 urlpatterns = [                                             
-    re_path(r'^.*$', views.test, name='index'),
+    path('', views.test, name='index'),
     re_path(r'^login/.*$', views.test, name='login'),
     path('logout/', views.test, name='logout'),
     re_path(r'^signup/.*', views.test, name='signup'),
