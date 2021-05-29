@@ -5,7 +5,7 @@ from django.db import models
 
 
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+# from django.core.urlresolvers import reverse
 
 class QuestionManager(models.Manager):
     @staticmethod
@@ -22,7 +22,7 @@ class Question(models.Model):
     text = models.TextField(verbose_name='полный текст вопроса')
     added_at = models.DateField(blank=True, auto_now_add=True, verbose_name='дата добавления вопроса')
     rating = models.IntegerField(blank=True, default=0, verbose_name='рейтинг вопроса (число)')
-    author = models.ForeignKey(User, related_name='question_author', verbose_name='автор вопроса')
+    author = models.ForeignKey(User, related_name='question_author', verbose_name='автор вопроса', on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, blank=True, related_name='question_like_user', verbose_name='список пользователей, поставивших лайк')
     objects = QuestionManager()
 
@@ -40,8 +40,8 @@ class Question(models.Model):
 class Answer(models.Model):
     text = models.TextField(verbose_name='текст ответа')
     added_at = models.DateField(blank=True, auto_now_add=True, verbose_name='дата добавления ответа')
-    question = models.ForeignKey(Question, verbose_name='вопрос, к которому относится ответ')
-    author = models.ForeignKey(User, verbose_name='автор ответа')
+    question = models.ForeignKey(Question, verbose_name='вопрос, к которому относится ответ', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, verbose_name='автор ответа', on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.text
