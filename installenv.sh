@@ -10,7 +10,10 @@ sudo python3 -m pip install mysqlclient
 sudo /etc/init.d/mysql start
 mysql -uroot -e "CREATE DATABASE stepic_web;"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON stepic_web.* TO 'box'@'localhost' WITH GRANT OPTION;"
-
+mysql -uroot -e "FLUSH PRIVILEGES;"
+sudo /etc/init.d/mysql restart
+python /home/box/web/ask/manage.py collectstatic
+python /home/box/web/ask/manage.py syncdb
 sudo /etc/init.d/nginx restart
 
 cd ask
